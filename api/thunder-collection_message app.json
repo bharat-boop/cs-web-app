@@ -1,0 +1,152 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "message app",
+    "dateExported": "2023-09-30T19:59:01.857Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "b4910d64-0707-43c5-adeb-860c09fc3fa6",
+            "colId": "ee6cbe31-1f66-4f48-8ff2-e2ab456a8985",
+            "containerId": "",
+            "name": "resp req access",
+            "url": "http://localhost:3000/api/agent/queries/resp",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-09-30T13:18:21.642Z",
+            "modified": "2023-09-30T19:33:47.206Z",
+            "headers": [
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE4NjBkNGU1MzVmZjAzNDk3OGRiNjQiLCJ1c2VybmFtZSI6ImFiYyIsImlhdCI6MTY5NjA5ODA4Mn0.78PoAQ7xtLnQ7Ay5Pmf4T5DUyibpZ-S5jkfSsKl-F7c"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"response\" : \"I am responsing to this message.\",\n  \"messageId\" : \"XKKZs2Muyrkg5fav\",\n  \"userId\" : 208,\n  \"agentId\" : 2342\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "bfde6054-18c9-4a9b-9ec5-a0b4875b12ee",
+            "colId": "ee6cbe31-1f66-4f48-8ff2-e2ab456a8985",
+            "containerId": "",
+            "name": "agent responses request",
+            "url": "http://localhost:3000/api/agent/respq",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-09-30T13:25:39.573Z",
+            "modified": "2023-09-30T17:34:21.028Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"response\" : \"Hello wowlrd!!\",\n  \"messageId\" : \"lbgHOuZheHEBoG56\",\n  \"userId\" : 218,\n  \"agentId\" : 2342\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "aa96cdb3-c7d3-4f8b-9a1c-2ebceb454f7d",
+            "colId": "ee6cbe31-1f66-4f48-8ff2-e2ab456a8985",
+            "containerId": "",
+            "name": "client register",
+            "url": "http://localhost:3000/api/client/register",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-09-30T16:44:17.603Z",
+            "modified": "2023-09-30T16:44:17.603Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\" : \"abcd\",\n  \"username\" : \"abc\",\n  \"password\" : \"abcd\",\n  \"email\" : \"abcd@def.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "b6870a36-9eda-405d-801b-8dbc311f9537",
+            "colId": "ee6cbe31-1f66-4f48-8ff2-e2ab456a8985",
+            "containerId": "",
+            "name": "agent register",
+            "url": "http://localhost:3000/api/agent/register",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-09-30T17:56:25.052Z",
+            "modified": "2023-09-30T17:56:25.052Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\" : \"abcd\",\n  \"username\" : \"abc\",\n  \"password\" : \"abcd\",\n  \"email\" : \"abcd@def.com\",\n  \"key\" : \"1ce5edc287e236768230903ab8c12b38\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "c94fb46a-cc77-4bd0-b79f-15823d7a521e",
+            "colId": "ee6cbe31-1f66-4f48-8ff2-e2ab456a8985",
+            "containerId": "",
+            "name": "agent login",
+            "url": "http://localhost:3000/api/agent/login",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2023-09-30T17:58:04.701Z",
+            "modified": "2023-09-30T17:58:04.701Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\" : \"abc\",\n  \"password\" : \"abcd\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "afa16029-877d-4893-8b6d-5cbacf3bea50",
+            "colId": "ee6cbe31-1f66-4f48-8ff2-e2ab456a8985",
+            "containerId": "",
+            "name": "client login",
+            "url": "http://localhost:3000/api/client/login",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2023-09-30T19:30:43.735Z",
+            "modified": "2023-09-30T19:30:43.735Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\" : \"abc\",\n  \"password\" : \"abcd\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "b5adc65d-946b-4653-8178-bf1fe7d3ca8e",
+            "colId": "ee6cbe31-1f66-4f48-8ff2-e2ab456a8985",
+            "containerId": "",
+            "name": "noresp req access",
+            "url": "http://localhost:3000/api/agent/queries/noresp",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2023-09-30T19:35:18.033Z",
+            "modified": "2023-09-30T19:35:18.033Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE4NjBkNGU1MzVmZjAzNDk3OGRiNjQiLCJ1c2VybmFtZSI6ImFiYyIsImlhdCI6MTY5NjA5ODA4Mn0.78PoAQ7xtLnQ7Ay5Pmf4T5DUyibpZ-S5jkfSsKl-F7c"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

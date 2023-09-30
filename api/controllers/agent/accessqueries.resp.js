@@ -16,7 +16,7 @@ const accessqueries = async (req,res) => {
         const requestcollection = db.collection("requestcollection");
         const responsecollection = db.collection("responsecollection");
 
-        const allData = await requestcollection.find({response_status : "no response"}).toArray();
+        const allData = await requestcollection.find({response_status : "responded"}).toArray();
         await dbclient.close();
         res.send(allData);
     } catch (error) {

@@ -1,3 +1,4 @@
+
 const express = require("express");
 const fs = require("fs");
 const path = require("path")
@@ -16,7 +17,7 @@ const accessqueries = async (req,res) => {
         const requestcollection = db.collection("requestcollection");
         const responsecollection = db.collection("responsecollection");
 
-        const allData = await requestcollection.find({response_status : "responded"}).toArray();
+        const allData = await requestcollection.find({response_status : "no response"}).toArray();
         await dbclient.close();
         res.send(allData);
     } catch (error) {
