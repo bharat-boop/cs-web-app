@@ -10,7 +10,7 @@ const Register = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
-    name:"",email:"",password:"",cpassword:""
+    name:"",email:"",username:"",password:""
   })
   const [err, setErr] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -29,14 +29,14 @@ const Register = () => {
   const postData = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const {name,email,password,cpassword} = user;
+    const {name,email,username,password} = user;
     const res = await fetch('/register',{
       method:"POST",
       headers:{
         "Content-Type":"application/json"
       },
       body:JSON.stringify({
-        name,email,password,cpassword
+        name,email,username,password
       })
     })
     const data = await res.json();
@@ -50,7 +50,7 @@ const Register = () => {
       setSuccess(true);
       console.log("Registration Successful");
 
-      navigate("/signin");
+      navigate("/login");
     }
   }
 
@@ -83,6 +83,17 @@ const Register = () => {
           />
         </div>
         <div className="form-group">
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            placeholder="username"
+            name="username"
+            id="username"
+            value={user.username}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
           <label htmlFor="password">Password</label>
           <div className="passwordDiv">
 
@@ -111,7 +122,7 @@ const Register = () => {
           </div>
 
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="cpassword">Confirm Password</label>
           <input
             type="password"
@@ -121,7 +132,7 @@ const Register = () => {
             value={user.cpassword}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
         <div className="button-container">
           <button type="submit" name="register" id="register" disabled={loading} className='auth-button' onClick={postData}>
             Register

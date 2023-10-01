@@ -9,7 +9,7 @@
     max-width: 55rem;
     margin: 10rem auto;
     padding: 2.3rem;
-    background-color: var(--note-bg);
+    background-color: white;
     border-radius: 1rem;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -28,7 +28,7 @@
     font-size: 1.2rem;
     width: 100%;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid black;
     border-radius: 4px;
   }
 
@@ -47,7 +47,7 @@
   
   .auth-button {
     background-color: var(--main-color);
-    color: white;
+    color: red;
     border: none;
     margin: auto;
     padding: 10px 20px;

@@ -24,9 +24,9 @@ const responsequery = async (req,res) => {
 
         const responseId = generateRandomString(16);
 
-        const {response,messageId,userId,agentId} = req.body;
+        const {response,messageId,agentId} = req.body;
 
-        let message = await requestcollection.findOne({messageId,userId});
+        let message = await requestcollection.findOne({messageId});
         if(!message)
         {
             res.send({error : "No such client data found!"});
@@ -40,7 +40,6 @@ const responsequery = async (req,res) => {
 
         let agentData = await responsecollection.insertOne({
             messageId : messageId,
-            userId : userId,
             agentId : agentId,
             responseId : responseId,
             response : response
