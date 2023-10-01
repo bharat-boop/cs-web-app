@@ -1,4 +1,5 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { Alert } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -6,48 +7,30 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
-import Select from "@mui/material/Select";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
-import MenuItem from "@mui/material/MenuItem";
-import { agentLogin, clientLogin } from "../axios/axios";
 import Cookies from "universal-cookie";
-import { Alert } from "@mui/material";
+import { agentLogin } from "../axios/axios";
 
 const defaultTheme = createTheme();
 
 const Login = () => {
   const [err, setErr] = useState("");
   const cookies = new Cookies(null, { path: "/" });
+  // const [type, setType] = useState(1);
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    if (type === 0) {
-      const login = await clientLogin(
-        data.get("username"),
-        data.get("password")
-      );
-      if (login.status === "not ok") {
-        setErr(login.msg);
-      } else {
-        window.location.href = "/";
-      }
+    const login = await agentLogin(data.get("username"), data.get("password"));
+    if (login.status === "not ok") {
+      setErr(login.msg);
     } else {
-      const login = await agentLogin(
-        data.get("username"),
-        data.get("password")
-      );
-      if (login.status === "not ok") {
-        setErr(login.msg);
-      } else {
-        window.location.href = "/agent";
-        cookies.set("token", login.token, { path: "/" });
-      }
+      window.location.href = "/agent";
+      cookies.set("token", login.token, { path: "/" });
     }
   };
-  const [type, setType] = useState(0);
   let error = null;
   if (err) {
     error = <Alert severity="error">{err}</Alert>;
@@ -83,7 +66,7 @@ const Login = () => {
               alignItems: "center",
             }}
           >
-              {error}
+            {error}
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
               <LockOutlinedIcon />
             </Avatar>
@@ -96,16 +79,6 @@ const Login = () => {
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
-              <Select
-                value={type}
-                label="Type"
-                onChange={(e) => {
-                  setType(e.target.value);
-                }}
-              >
-                <MenuItem value={0}>Client</MenuItem>
-                <MenuItem value={1}>Agent</MenuItem>
-              </Select>
               <TextField
                 margin="normal"
                 required
