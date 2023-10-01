@@ -1,17 +1,15 @@
-
 import './App.css'
-import {Routes,Route} from 'react-router-dom'
-import Login from './components/login/Login';
-import Register from './components/register/Register';
+import Cookies from 'universal-cookie'
 
 function App() {
+  const cookies = new Cookies(null , {path: '/'});
+  if(cookies.get('token') === undefined){
+    window.location.href = "/login";
+  }
   return (
-    <div>
-      <Routes>
-        <Route  path="/register" element={<Register/>}/>
-        <Route  path="/login" element={<Login/>}/>
-      </Routes>
-    </div>
+    <>
+      
+    </>
   )
 }
 
