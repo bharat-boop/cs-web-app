@@ -17,11 +17,17 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    // const register = await agentRegister(
+    //   data.get("username"),
+    //   data.get("password"),
+    //   data.get("name"),
+    //   data.get("email")
+    // );
     const register = await agentRegister(
-      data.get("username"),
-      data.get("password"),
       data.get("name"),
-      data.get("email")
+      data.get("username"),
+      data.get("email"),
+      data.get("password")
     );
     if (register.status === "not ok") {
       alert(register.msg);

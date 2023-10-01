@@ -49,6 +49,7 @@ const Register = async (req, res) => {
       return res.status(200).send({ status: "not ok", msg: "invalid input" });
     }
     let uniqueCheck = await agentData.find({username}).toArray();
+    console.log(uniqueCheck);
     if(uniqueCheck.length >= 1){
       return res.status(200).send({ status: "not ok", msg: "user not created as username already exists." });
     }
@@ -60,7 +61,22 @@ const Register = async (req, res) => {
 
     const salt = bcrypt.genSaltSync(10);
     const password = bcrypt.hashSync(String(plainTextPassword), salt);
-    const agent = await agentData.insertOne({name, username, password, email});
+    const agent = await agentData.insertOne({name, username, email, password});
+
+    // console.log("Username: ", username);
+    // console.log("name: ", name);
+    // console.log("email: ", email);
+    // console.log("pass: ", plainTextPassword);
+
+
+    // insert data 
+    // const agent = await agentData.insertOne({
+    //   name: name,
+    //   username: username,
+    //   email: email,
+    //   password: password,
+    // });
+    
     if (!agent) {
       return res.status(200).send({ status: "not ok", msg: "agent not created" });
     }
