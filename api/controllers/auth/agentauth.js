@@ -21,7 +21,7 @@ const Login = async (req, res) => {
     const {username, password} = req.body;
     const agent = await agentData.findOne({username});
     if (!agent) {
-      return res.status(400).send({ status: "not ok", msg: "agent not found" });
+      return res.status(200).send({ status: "not ok", msg: "agent not found" });
     }
     const match = await bcrypt.compareSync(password,agent.password);
     if(match){
@@ -30,7 +30,7 @@ const Login = async (req, res) => {
         return res.status(200).send({ status: "ok", token });
     }
     else{
-        return res.status(400).send({ status: "not ok" });
+        return res.status(200).send({ status: "not ok" });
     }
   } catch (error) {
     console.log(error);
@@ -45,10 +45,12 @@ const Register = async (req, res) => {
     const agentData = db.collection("agentdata");
   
     const {name, username, password : plainTextPassword, email} = req.body;
-
+    if (!name || typeof name !== "string" || !username || typeof username !== "string" || !plainTextPassword || typeof plainTextPassword !== "string" || !email || typeof email !== "string") {
+      return res.status(200).send({ status: "not ok", msg: "invalid input" });
+    }
     let uniqueCheck = await agentData.find({username}).toArray();
     if(uniqueCheck.length >= 1){
-      return res.status(400).send({ status: "not ok", msg: "user not created as username already exists." });
+      return res.status(200).send({ status: "not ok", msg: "user not created as username already exists." });
     }
 
     // if(key !== process.env.CREATE_AGENT_SECRET_KEY)
@@ -60,10 +62,11 @@ const Register = async (req, res) => {
     const password = bcrypt.hashSync(String(plainTextPassword), salt);
     const agent = await agentData.insertOne({name, username, password, email});
     if (!agent) {
-      return res.status(400).send({ status: "not ok", msg: "agent not created" });
+      return res.status(200).send({ status: "not ok", msg: "agent not created" });
     }
     return res.status(200).send({ status: "ok", msg: "agent created" });
-  } catch (error) {
+  } 
+  catch (error) {
     console.log(error);
   }
 };

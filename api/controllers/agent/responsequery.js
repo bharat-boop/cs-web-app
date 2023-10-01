@@ -15,7 +15,7 @@ function generateRandomString(length) {
 const responsequery = async (req,res) => {
     try{
         console.log("API IS WORKING!!")
-        console.log(req)
+        // console.log(req)
 
         await dbclient.connect();
         const db = dbclient.db('mydb');
@@ -25,8 +25,8 @@ const responsequery = async (req,res) => {
         const responseId = generateRandomString(16);
 
         const {response,messageId,agentId} = req.body;
-
-        let message = await requestcollection.findOne({messageId});
+        console.log('response',response, 'messageId', messageId, 'agentId',agentId)
+        let message = await requestcollection.findOne({messageId : messageId});
         if(!message)
         {
             res.send({error : "No such client data found!"});

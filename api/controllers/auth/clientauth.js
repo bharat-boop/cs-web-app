@@ -23,7 +23,7 @@ const Login = async (req, res) => {
     const user = await clientData.findOne({username});
 
     if (!user) {
-      return res.status(400).send({ status: "not ok", msg: "user not found" });
+      return res.status(200).send({ status: "not ok", msg: "user not found" });
     }
     const match = await bcrypt.compareSync(password,user.password);
     if(match){
@@ -32,7 +32,7 @@ const Login = async (req, res) => {
         return res.status(200).send({ status: "ok", token });
     }
     else{
-        return res.status(400).send({ status: "not ok" });
+        return res.status(200).send({ status: "not ok" });
     }
   } catch (error) {
     console.log(error);
@@ -50,7 +50,7 @@ const Register = async (req, res) => {
 
     let uniqueCheck = await clientData.find({username}).toArray();
     if(uniqueCheck.length >= 1){
-      return res.status(400).send({ status: "not ok", msg: "user not created as username already exists." });
+      return res.status(200).send({ status: "not ok", msg: "user not created as username already exists." });
     }
 
     else{
@@ -58,7 +58,7 @@ const Register = async (req, res) => {
     const password = bcrypt.hashSync(String(plainTextPassword), salt);
     const user = await clientData.insertOne({name, username, password, email});
     if (!user) {
-      return res.status(400).send({ status: "not ok", msg: "user not created" });
+      return res.status(200).send({ status: "not ok", msg: "user not created" });
     }
     return res.status(200).send({ status: "ok", msg: "user created" });
   }} catch (error) {

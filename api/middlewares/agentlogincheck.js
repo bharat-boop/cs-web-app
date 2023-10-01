@@ -21,7 +21,7 @@ const agentLoginCheck = async (req, res, next) => {
 
       const agent = jwt.verify(token, process.env.JWT_agent_SECRET_KEY);
 
-      console.log(agent);
+      // console.log(agent);
 
       const {_id} = agent;
 
@@ -36,14 +36,14 @@ const agentLoginCheck = async (req, res, next) => {
 
       const { username, email } = agentLoggedInData;
       req.user = { username, email, type: "agent" };
-      console.log(req.user);
+      // console.log(req.user);
     }
     else{
-        return res.status(400).send({status : "not ok", msg : "agent not logged in."})
+        return res.status(200).send({status : "not ok", msg : "agent not logged in."})
     }
   } catch (error) {
     console.log(error);
-    return res.status(404).send({status : "not ok", msg : "authentication fail."})
+    return res.status(200).send({status : "not ok", msg : "authentication fail."})
   }
   next();
 };
